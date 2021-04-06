@@ -1,0 +1,26 @@
+name: 'Mayhem for API'
+description: 'Find security, realiability and performance bugs in your REST APIs with ForAllSecure Mayhem for API'
+author: 'ForAllSecure'
+inputs:
+  mapi-token:
+    description: Mayhem for API service account token
+    required: true
+  api-url:
+    description: URL pointing to your running API you started before calling this action (don't fuzz your production API!)
+    required: true
+  api-spec:
+    description: Path to your Swagger 2.0 or OpenAPI 3.0 specification, or your Postman collection. Can be a URL.
+    required: true
+  duration:
+    description: Scan duration
+    default: 60
+  sarif-report:
+    description: SARIF output path. You can upload ot to GitHub using the 'github/codeql-action/upload-sarif@v1' action
+  html-report:
+    description: HTML output path. You can artifact to GitHub using the 'actions/upload-artifact@v2' action
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
+branding:
+  icon: 'chevron-down'  
+  color: 'red'
