@@ -1,0 +1,40 @@
+{
+  "name": "mapi-action",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Mayhem for API action",
+  "main": "lib/main.js",
+  "scripts": {
+    "build": "tsc",
+    "format": "prettier --write **/*.ts",
+    "format-check": "prettier --check **/*.ts",
+    "lint": "eslint src/**/*.ts",
+    "package": "ncc build --source-map --license licenses.txt",
+    "all": "npm run build && npm run format && npm run lint && npm run package"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ForAllSecure/mapi-action.git"
+  },
+  "keywords": [
+    "actions",
+    "fuzzing",
+    "api",
+    "security"
+  ],
+  "author": "ForAllSecure",
+  "dependencies": {
+    "@actions/core": "^1.2.6"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.9",
+    "@typescript-eslint/parser": "^4.8.1",
+    "@vercel/ncc": "^0.25.1",
+    "eslint": "^7.17.0",
+    "eslint-plugin-github": "^4.1.1",
+    "js-yaml": "^3.14.0",
+    "prettier": "2.2.1",
+    "typescript": "^4.1.3"
+  }
+}
