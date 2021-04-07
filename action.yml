@@ -1,5 +1,5 @@
 name: 'Mayhem for API'
-description: 'Find security, realiability and performance bugs in your REST APIs with ForAllSecure Mayhem for API'
+description: 'Automatically test your REST APIs with your OpenAPI specs and Postman collections'
 author: 'ForAllSecure'
 inputs:
   mapi-token:
