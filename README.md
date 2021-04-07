@@ -1,6 +1,6 @@
 # Mayhem for API GitHub Action
 
-[![Mayhem for API](https://mayhem4api.forallsecure.com/static/media/logo.f8497128.svg)](http://mayhem4api.forallsecure.com/signup)
+[![Mayhem for API](https://mayhem4api.forallsecure.com/downloads/img/mapi-logo-full-color.svg)](http://mayhem4api.forallsecure.com/signup)
 
 A GitHub Action for using Mayhem for API to check for reliability,
 performance and security issues in your APIs. 
