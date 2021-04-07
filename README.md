@@ -40,7 +40,7 @@ jobs:
       run: ./run_your_api.sh & # <- update this
 
     - name: Run Mayhem for API to check for vulnerabilities
-      uses: ForAllSecure/mapi-action@master
+      uses: ForAllSecure/mapi-action@v1
       with:
         mapi-token: ${{ secrets.MAPI_TOKEN }}
         api-url: http://localhost:8000 # <- update this
@@ -100,7 +100,7 @@ jobs:
       run: ./run_your_api.sh & # <- update this
 
     - name: Run Mayhem for API to check for vulnerabilities
-      uses: ForAllSecure/mapi-action@master
+      uses: ForAllSecure/mapi-action@v1
       continue-on-error: true
       with:
         mapi-token: ${{ secrets.MAPI_TOKEN }}
@@ -123,7 +123,7 @@ To artifact the report in your build, add this step to your pipeline:
 
 ```yaml
 - name: Run Mayhem for API to check for vulnerabilities
-  uses: ForAllSecure/mapi-action@master
+  uses: ForAllSecure/mapi-action@v1
   continue-on-error: true
   with:
     mapi-token: ${{ secrets.MAPI_TOKEN }}
@@ -152,7 +152,7 @@ step to your pipeline:
 
 ```yaml
 - name: Run Mayhem for API to check for vulnerabilities
-  uses: ForAllSecure/mapi-action@master
+  uses: ForAllSecure/mapi-action@v1
   continue-on-error: true
   with:
     mapi-token: ${{ secrets.MAPI_TOKEN }}
