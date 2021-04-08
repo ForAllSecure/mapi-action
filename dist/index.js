@@ -92,10 +92,10 @@ function run() {
             process.env['SKIP_MAPI_AUTO_UPDATE'] = 'true';
             const cli = yield mapiCLI();
             // Load inputs
-            const mapiToken = core.getInput('mapi-token');
-            const apiUrl = core.getInput('api-url');
-            const apiSpec = core.getInput('api-spec');
-            const duration = core.getInput('duration');
+            const mapiToken = core.getInput('mapi-token', { required: true });
+            const apiUrl = core.getInput('api-url', { required: true });
+            const apiSpec = core.getInput('api-spec', { required: true });
+            const duration = core.getInput('duration', { required: true });
             const sarifReport = core.getInput('sarif-report');
             const htmlReport = core.getInput('html-report');
             // Auto-generate target name

@@ -56,10 +56,10 @@ async function run(): Promise<void> {
     const cli = await mapiCLI()
 
     // Load inputs
-    const mapiToken: string = core.getInput('mapi-token')
-    const apiUrl: string = core.getInput('api-url')
-    const apiSpec: string = core.getInput('api-spec')
-    const duration: string = core.getInput('duration')
+    const mapiToken: string = core.getInput('mapi-token', {required: true})
+    const apiUrl: string = core.getInput('api-url', {required: true})
+    const apiSpec: string = core.getInput('api-spec', {required: true})
+    const duration: string = core.getInput('duration', {required: true})
     const sarifReport: string | undefined = core.getInput('sarif-report')
     const htmlReport: string | undefined = core.getInput('html-report')
 
