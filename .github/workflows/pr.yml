@@ -1,26 +1,31 @@
-name: 'build-test'
-on: # rebuild any PRs and main branch changes
-  pull_request:
-  push:
-    branches:
-      - main
-      - 'releases/*'
+name: 'safe-pr-build-test'
+on:
+  pull_request_target:
+    types: [labeled]
 
 jobs:
   build: # make sure build/ci work properly
     runs-on: ubuntu-latest
+    # Only run on labeled PRs to avoid leaking secrets
+    if: contains(github.event.pull_request.labels.*.name, 'safe-to-test')
     env:
       MAPI_TOKEN: ${{ secrets.MAPI_TOKEN }}
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
       - run: |
           npm install
       - run: |
           npm run all
   test: # make sure the action works on a clean machine without building
     runs-on: ubuntu-latest
+    # Only run on labeled PRs to avoid leaking secrets
+    if: contains(github.event.pull_request.labels.*.name, 'safe-to-test')
     steps:
       - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
 
       - uses: ./
         continue-on-error: true
