@@ -781,10 +781,10 @@
     "@typescript-eslint/types" "4.21.0"
     eslint-visitor-keys "^2.0.0"
 
-"@vercel/ncc@^0.28.0":
-  version "0.28.1"
-  resolved "https://registry.yarnpkg.com/@vercel/ncc/-/ncc-0.28.1.tgz#0d01d570cd58bf8b4fee6e00ce2b138e3ba5389a"
-  integrity sha512-RrDgMXnd4PsfcqEMP2pSdBzmcwj+Rq+rxqZgiB8DSM9QBqMei4/zuMxmnzV7g3gbrg/V2VJGQt3hYmK5vqH58g==
+"@vercel/ncc@^0.28.2":
+  version "0.28.2"
+  resolved "https://registry.yarnpkg.com/@vercel/ncc/-/ncc-0.28.2.tgz#cf0c4f7e4c980bc849eaf115851f2440cd62c8a5"
+  integrity sha512-2ZBPviK9nFHzymu9POKGz50BRGGBIw7a8VcjgH73Xu2H4IvZx3KS0Qk/SS7S/N6iAalAGGxLSwFM1obeBGWXGg==
 
 "@webassemblyjs/ast@1.11.0":
   version "1.11.0"
@@ -4786,10 +4786,10 @@ typedarray-to-buffer@^3.1.5:
   dependencies:
     is-typedarray "^1.0.0"
 
-typescript@^4.2.3:
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.2.3.tgz#39062d8019912d43726298f09493d598048c1ce3"
-  integrity sha512-qOcYwxaByStAWrBf4x0fibwZvMRG+r4cQoTjbPtUlrWjBHbmCAww1i448U0GJ+3cNNEtebDteo/cHOR3xJ4wEw==
+typescript@^4.2.4:
+  version "4.2.4"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.2.4.tgz#8610b59747de028fda898a8aef0e103f156d0961"
+  integrity sha512-V+evlYHZnQkaz8TRBuxTA92yZBPotr5H+WhQ7bD3hZUndx5tGOa1fuCgeSjxAzM1RiN5IzvadIXTVefuuwZCRg==
 
 unbox-primitive@^1.0.0:
   version "1.0.1"
