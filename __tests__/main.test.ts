@@ -29,7 +29,7 @@ test('test runs', () => {
       expect.stringContaining('Fuzzing complete!,')
     )
     expect(error.stdout.toString()).toEqual(
-      expect.stringContaining('Found Internal Server Error!')
+      expect.stringContaining('Found internal-server-error!')
     )
     expect(error.stdout.toString()).toEqual(
       expect.stringContaining('The Mayhem for API scan found issues in the API')
