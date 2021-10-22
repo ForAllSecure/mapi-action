@@ -20,8 +20,7 @@ our job easier!
 and PRs. We make it easy, and provide results right in your PRs where
 you want them. Adding Mayhem for API to a DevOps pipeline is easy.
 
-Want to try it? Start a [30-day free
-trial](http://mayhem4api.forallsecure.com/signup).
+Want to try it? [Sign up for free](http://mayhem4api.forallsecure.com/signup) today!
 
 ## Usage
 
