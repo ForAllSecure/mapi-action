@@ -86,11 +86,8 @@ async function run(): Promise<void> {
 
     // We expect the token to be a service account which can only belong to a
     // single organization, therefore we do not need to specify the org
-    // explicitely here. We also ignore failure since we might have created the
-    // target in a previous run.
-    await exec.exec(cli, ['target', 'create', apiName, apiUrl], {
-      ignoreReturnCode: true
-    })
+    // explicitly in the target argument.
+
     // Start fuzzing
     const res = await exec.exec(cli, args, {ignoreReturnCode: true})
     if (res !== 0) {
