@@ -1,10 +1,9 @@
 import * as core from '@actions/core'
-import * as tc from '@actions/tool-cache'
 import * as exec from '@actions/exec'
+import * as tc from '@actions/tool-cache'
 import {chmodSync} from 'fs'
+import {cliInfo} from './mapiapi'
 import slugify from 'slugify'
-
-import {cliInfo} from './mapiAPI'
 
 // Return local path to donwloaded or cached CLI
 async function mapiCLI(): Promise<string> {
@@ -12,9 +11,11 @@ async function mapiCLI(): Promise<string> {
   let cliVersion = 'latest'
   try {
     cliVersion = (await cliInfo()).latest_version
-  } catch (err) {
-    core.info(err.message)
-    core.debug('Could not get CLI version. Using latest')
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      core.info(err.message)
+      core.debug('Could not get CLI version. Using latest')
+    }
   }
 
   // Infer right version from environment
@@ -94,9 +95,11 @@ async function run(): Promise<void> {
       // TODO: should we print issues here?
       throw new Error('The Mayhem for API scan found issues in the API')
     }
-  } catch (error) {
-    core.info(`mapi action failed with: ${error.message}`)
-    core.setFailed(error.message)
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      core.info(`mapi action failed with: ${err.message}`)
+      core.setFailed(err.message)
+    }
   }
 }
 
