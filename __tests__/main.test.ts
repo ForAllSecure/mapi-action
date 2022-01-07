@@ -21,7 +21,7 @@ test('test runs', () => {
   try {
     execFileSync(np, [ip], options)
     throw new Error('Actions should have failed due to finding a bug')
-  } catch (error) {
+  } catch (error: any) {
     if (error.stdout === undefined) {
       throw error
     }
