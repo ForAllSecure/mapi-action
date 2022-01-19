@@ -18,6 +18,8 @@ inputs:
     description: SARIF output path. You can upload ot to GitHub using the 'github/codeql-action/upload-sarif@v1' action
   html-report:
     description: HTML output path. You can artifact to GitHub using the 'actions/upload-artifact@v2' action
+  experimental-rewrite-plugin:
+    description: --experimental-rewrite-plugin option value
 runs:
   using: 'node12'
   main: 'dist/index.js'

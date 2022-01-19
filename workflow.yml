@@ -5,18 +5,24 @@
 # To use this workflow, you will need to:
 #
 # 1. Create a Mayhem for API account at
-#    https://mayhem4api.forallsecure.com/signup (30-day free trial)
+#    https://mayhem4api.forallsecure.com/signup
 #
-# 2. Create a service account token `mapi organization service-account create
-#    <org-name> <service-account-name>`
+# 2. Create a service account token:
+#   ```
+#     mapi organization service-account create <org-name> <service-account-name>
+#   ```
 #
-# 3. Add the service account token as a a secret in GitHub called "MAPI_TOKEN"
+# 3. In your repo's settings, add the service account token as a secret in
+#    GitHub called "MAPI_TOKEN".  More details on adding encrypted secrets
+#    instructions found at https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository
+#
 #
 # 4. Update the "Start your API" step to run your API in the background before
 #    starting the Mayhem for API scan, and update the `api-url` & `api-spec`
 #    field.
 #
 # If you have any questions, please contact us at mayhem4api@forallsecure.com
+# or join our discord channel https://discord.com/channels/845302007081336862/845302008907169886
 
 name: "Mayhem for API"
 on:
@@ -43,11 +49,11 @@ jobs:
         continue-on-error: true
         with:
           mapi-token: ${{ secrets.MAPI_TOKEN }}
-          api-url: http://localhost:8080 # <- update this
-          api-spec: http://localhost:8080/openapi.json # <- update this
+          api-url: "http://localhost:8080" # <- update this
+          api-spec: "http://localhost:8080/openapi.json" # <- update this
           duration: 60
           sarif-report: mapi.sarif
-          html: mapi.html
+          html-report: mapi.html
 
       # Archive HTML report
       - name: Archive Mayhem for API report
