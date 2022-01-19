@@ -63,12 +63,15 @@ async function run(): Promise<void> {
     const duration: string = core.getInput('duration', {required: true})
     const sarifReport: string | undefined = core.getInput('sarif-report')
     const htmlReport: string | undefined = core.getInput('html-report')
+    const experimentalRewritePlugin: string | undefined = core.getInput(
+      'experimental-rewrite-plugin'
+    )
 
     // Auto-generate target name
     const repo = process.env['GITHUB_REPOSITORY']
     if (repo === undefined) {
       throw Error(
-        'Missing GITHUB_REPOSITORY environment variable. Are you not running this in a Github Action environement?'
+        'Missing GITHUB_REPOSITORY environment variable. Are you not running this in a Github Action environment?'
       )
     }
     const apiName = slugify(repo.replace('/', '-'), {lower: true})
@@ -80,6 +83,9 @@ async function run(): Promise<void> {
     }
     if (htmlReport) {
       args.push('--html', htmlReport)
+    }
+    if (experimentalRewritePlugin) {
+      args.push('--experimental-rewrite-plugin', experimentalRewritePlugin);
     }
     core.debug(args.join(' '))
 
