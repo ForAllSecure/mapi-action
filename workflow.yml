@@ -27,9 +27,9 @@
 name: "Mayhem for API"
 on:
   push:
-    branches: [ main ]
+    branches: [ main, master ]
   pull_request:
-    branches: [ main ]
+    branches: [ main, master ]
 
 jobs:
   mayhem-for-api:
