@@ -3,7 +3,7 @@
 [![Mayhem for API](https://mayhem4api.forallsecure.com/downloads/img/mapi-logo-full-color.svg)](http://mayhem4api.forallsecure.com/signup)
 
 A GitHub Action for using Mayhem for API to check for reliability,
-performance and security issues in your APIs. 
+performance and security issues in your APIs.
 
 ## About Mayhem for API
 
@@ -14,7 +14,7 @@ production.
 🧑‍💻 For Developers, by developers: The engineers building
 software are the best equipped to fix bugs, including security bugs. As
 engineers ourselves, we're building tools that we wish existed to make
-our job easier! 
+our job easier!
 
 🤖 Simple to Automate in CI: Tests belong in CI, running on every commit
 and PRs. We make it easy, and provide results right in your PRs where
@@ -24,7 +24,12 @@ Want to try it? [Sign up for free](http://mayhem4api.forallsecure.com/signup) to
 
 ## Usage
 
-Use the Action as follows:
+1. Create a file in _your_ GitHub repository at:
+```
+    .github/workflows/ForAllSecure-Mayhem-for-API.yml
+```
+
+2. Add the following text to the file and tweak it for your codebase
 
 ```yaml
 name: Example workflow for Mayhem for API
@@ -46,18 +51,26 @@ jobs:
         api-spec: your-openapi-spec-or-postman-collection.json # <- update this
 ```
 
+3. Commit the new file and push it up to GitHub
+
+4. Your new Mayhem for API action will be visible at
+
+    `https://github.com/<USERNAME>/<REPO_NAME>/actions`
+
+---
+
 This repo contains a [full example](workflow.yml) for reference.
 
 The action accepts the follow inputs:
 
 | Required | Input Name | Type | Description | Default
 | --- | --- | --- | --- | ---
-| ✔️ | `mapi-token` | string | Mayhem for API service account token | 
-| ✔️ | `api-url` | string | URL to your running API. *Example:* http://localhost:8000/api/v1 | 
-| ✔️ | `api-spec` | string | Path or URL to your Swagger spec, OpenAPI spec, or Postman collection.| 
-|   | `duration` | number | Duration of scan, in seconds | 60 
-|   | `html-report` | string | Path to the generated SARIF report | 
-|   | `sarif-report` | string | Path to the generated HTML report | 
+| ✔️ | `mapi-token` | string | Mayhem for API service account token |
+| ✔️ | `api-url` | string | URL to your running API. *Example:* http://localhost:8000/api/v1 |
+| ✔️ | `api-spec` | string | Path or URL to your Swagger spec, OpenAPI spec, or Postman collection.|
+|   | `duration` | number | Duration of scan, in seconds | 60
+|   | `html-report` | string | Path to the generated SARIF report |
+|   | `sarif-report` | string | Path to the generated HTML report |
 
 
 ### Getting your Mayhem for API token
@@ -111,7 +124,7 @@ jobs:
 
 Mayhem for API generate reports when you pass `sarif-report` or
 `html-report` to the input. Make sure to pass `continue-on-error` to the
-Mayhem for API step if you want to process the reports in follow-up
+Mayhem-for-API step if you want to process the reports in follow-up
 steps.
 
 ## Artifact HTML Report
@@ -159,7 +172,7 @@ step to your pipeline:
     api-spec: your-openapi-spec-or-postman-collection.json # <- update this
     sarif-report: mapi.sarif
 
-# Upload SARIF file (only available on public repos or github enterprise)
+# Upload SARIF file (only available on public repos or GitHub enterprise)
 - name: Upload SARIF file
   uses: github/codeql-action/upload-sarif@v1
   with:
