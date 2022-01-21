@@ -66,6 +66,9 @@ async function run(): Promise<void> {
     const experimentalRewritePlugin: string | undefined = core.getInput(
       'experimental-rewrite-plugin'
     )
+    const experimentalClassifyPlugin: string | undefined = core.getInput(
+      'experimental-classify-plugin'
+    )
 
     // Auto-generate target name
     const repo = process.env['GITHUB_REPOSITORY']
@@ -85,7 +88,10 @@ async function run(): Promise<void> {
       args.push('--html', htmlReport)
     }
     if (experimentalRewritePlugin) {
-      args.push('--experimental-rewrite-plugin', experimentalRewritePlugin);
+      args.push('--experimental-rewrite-plugin', experimentalRewritePlugin)
+    }
+    if (experimentalClassifyPlugin) {
+      args.push('--experimental-classify-plugin', experimentalClassifyPlugin)
     }
     core.debug(args.join(' '))
 

@@ -101,6 +101,7 @@ function run() {
             const sarifReport = core.getInput('sarif-report');
             const htmlReport = core.getInput('html-report');
             const experimentalRewritePlugin = core.getInput('experimental-rewrite-plugin');
+            const experimentalClassifyPlugin = core.getInput('experimental-classify-plugin');
             // Auto-generate target name
             const repo = process.env['GITHUB_REPOSITORY'];
             if (repo === undefined) {
@@ -117,6 +118,9 @@ function run() {
             }
             if (experimentalRewritePlugin) {
                 args.push('--experimental-rewrite-plugin', experimentalRewritePlugin);
+            }
+            if (experimentalClassifyPlugin) {
+                args.push('--experimental-classify-plugin', experimentalClassifyPlugin);
             }
             core.debug(args.join(' '));
             process.env['MAPI_TOKEN'] = mapiToken;
