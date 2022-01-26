@@ -34,7 +34,7 @@ jobs:
           api-url: https://demo-api.mayhem4api.forallsecure.com/api/v3
           api-spec: https://demo-api.mayhem4api.forallsecure.com/api/v3/openapi.json
           html-report: mapi.html
-          runArgs: |
+          run-args: |
             --warnaserror
             --junit
             junit.xml

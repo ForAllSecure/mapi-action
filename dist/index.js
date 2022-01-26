@@ -102,7 +102,7 @@ function run() {
             const htmlReport = core.getInput('html-report');
             const experimentalRewritePlugin = core.getInput('experimental-rewrite-plugin');
             const experimentalClassifyPlugin = core.getInput('experimental-classify-plugin');
-            const runArgs = core.getMultilineInput("run-args");
+            const runArgs = core.getMultilineInput('run-args');
             // Auto-generate target name
             const repo = process.env['GITHUB_REPOSITORY'];
             if (repo === undefined) {
