@@ -69,6 +69,7 @@ async function run(): Promise<void> {
     const experimentalClassifyPlugin: string | undefined = core.getInput(
       'experimental-classify-plugin'
     )
+    const runArgs: string[] = core.getMultilineInput('run-args')
 
     // Auto-generate target name
     const repo = process.env['GITHUB_REPOSITORY']
@@ -93,6 +94,8 @@ async function run(): Promise<void> {
     if (experimentalClassifyPlugin) {
       args.push('--experimental-classify-plugin', experimentalClassifyPlugin)
     }
+    args.push(...runArgs)
+
     core.debug(args.join(' '))
 
     process.env['MAPI_TOKEN'] = mapiToken

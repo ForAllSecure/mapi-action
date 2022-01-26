@@ -49,11 +49,13 @@ jobs:
         continue-on-error: true
         with:
           mapi-token: ${{ secrets.MAPI_TOKEN }}
-          api-url: "http://localhost:8080" # <- update this
+          api-url: "http://localhost:8080"               # <- update this
           api-spec: "http://localhost:8080/openapi.json" # <- update this
-          duration: 60
+          duration: 60sec
           sarif-report: mapi.sarif
           html-report: mapi.html
+          run-args: |                                   # <- Additional run args
+          #  # --warnaserror                             #    split by \n
 
       # Archive HTML report
       - name: Archive Mayhem for API report

@@ -25,8 +25,17 @@ jobs:
           api-url: https://demo-api.mayhem4api.forallsecure.com/api/v3
           api-spec: https://demo-api.mayhem4api.forallsecure.com/api/v3/openapi.json
           html-report: mapi.html
+          runArgs: |
+            --warnaserror
+            --junit
+            junit.xml
       - name: Archive code coverage results
         uses: actions/upload-artifact@v2
         with:
           name: mapi-report
           path: mapi.html
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v2
+        with:
+          name: mapi-junit
+          path: junit.xml
