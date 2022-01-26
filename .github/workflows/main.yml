@@ -29,12 +29,12 @@ jobs:
             --warnaserror
             --junit
             junit.xml
-      - name: Archive code coverage results
+      - name: Archive HTML report
         uses: actions/upload-artifact@v2
         with:
           name: mapi-report
           path: mapi.html
-      - name: Archive code coverage results
+      - name: Archive JUnit results
         uses: actions/upload-artifact@v2
         with:
           name: mapi-junit
