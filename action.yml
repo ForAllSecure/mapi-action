@@ -13,7 +13,7 @@ inputs:
     required: true
   duration:
     description: Scan duration
-    default: 60
+    default: 60sec
   sarif-report:
     description: SARIF output path. You can upload ot to GitHub using the 'github/codeql-action/upload-sarif@v1' action
   html-report:
@@ -22,6 +22,8 @@ inputs:
     description: --experimental-rewrite-plugin option value
   experimental-classify-plugin:
     description: --experimental-classify-plugin option value
+  run-args:
+    description: A list of additional arguments (separated by '\n') to include in the call to 'mapi run'. Run 'mapi run --help' for a complete list of arguments.
 runs:
   using: 'node12'
   main: 'dist/index.js'

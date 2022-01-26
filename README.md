@@ -3,7 +3,7 @@
 [![Mayhem for API](https://mayhem4api.forallsecure.com/downloads/img/mapi-logo-full-color.svg)](http://mayhem4api.forallsecure.com/signup)
 
 A GitHub Action for using Mayhem for API to check for reliability,
-performance and security issues in your APIs. 
+performance and security issues in your APIs.
 
 ## About Mayhem for API
 
@@ -14,7 +14,7 @@ production.
 🧑‍💻 For Developers, by developers: The engineers building
 software are the best equipped to fix bugs, including security bugs. As
 engineers ourselves, we're building tools that we wish existed to make
-our job easier! 
+our job easier!
 
 🤖 Simple to Automate in CI: Tests belong in CI, running on every commit
 and PRs. We make it easy, and provide results right in your PRs where
@@ -35,9 +35,9 @@ Want to try it? [Sign up for free](http://mayhem4api.forallsecure.com/signup) to
         mapi organization service-account create <your-org> <service-account-name>
       ```
 
-    c. Add your service account token with name `MAPI_TOKEN` on your repository's GitHub page at   
+    c. Add your service account token with name `MAPI_TOKEN` on your repository's GitHub page at
        `Settings` → `Secrets` → `New repository secret`
-   
+
 2. Create a file in _your_ GitHub repository at:
 ```
     .github/workflows/ForAllSecure-Mayhem-for-API.yml
@@ -79,12 +79,13 @@ The action accepts the follow inputs:
 
 | Required | Input Name | Type | Description | Default
 | --- | --- | --- | --- | ---
-| ✔️ | `mapi-token` | string | Mayhem for API service account token | 
-| ✔️ | `api-url` | string | URL to your running API. *Example:* http://localhost:8000/api/v1 | 
-| ✔️ | `api-spec` | string | Path or URL to your Swagger spec, OpenAPI spec, or Postman collection.| 
-|   | `duration` | number | Duration of scan, in seconds | 60 
-|   | `html-report` | string | Path to the generated SARIF report | 
-|   | `sarif-report` | string | Path to the generated HTML report | 
+| ✔️ | `mapi-token` | string | Mayhem for API service account token |
+| ✔️ | `api-url` | string | URL to your running API. *Example:* http://localhost:8000/api/v1 |
+| ✔️ | `api-spec` | string | Path or URL to your Swagger spec, OpenAPI spec, or Postman collection.|
+|   | `duration` | number | Duration of scan, in seconds | 60
+|   | `html-report` | string | Path to the generated SARIF report |
+|   | `sarif-report` | string | Path to the generated HTML report |
+|   | `run-args` | string | Additional arguments to provide to the `mapi run` command. |
 
 ### Continuing on error
 
@@ -111,6 +112,14 @@ jobs:
         mapi-token: ${{ secrets.MAPI_TOKEN }}
         api-url: http://localhost:8000 # <- update this
         api-spec: your-openapi-spec-or-postman-collection.json
+        # Additional 'mapi run' arguments
+        run-args:|
+          # Do not fuzz the '/logout' endpoint
+          --ignore-endpoint
+          /logout
+          # Treat all warnings as errors
+          --warnaserror
+
 ```
 
 # Reports

@@ -102,6 +102,7 @@ function run() {
             const htmlReport = core.getInput('html-report');
             const experimentalRewritePlugin = core.getInput('experimental-rewrite-plugin');
             const experimentalClassifyPlugin = core.getInput('experimental-classify-plugin');
+            const runArgs = core.getMultilineInput('run-args');
             // Auto-generate target name
             const repo = process.env['GITHUB_REPOSITORY'];
             if (repo === undefined) {
@@ -122,6 +123,7 @@ function run() {
             if (experimentalClassifyPlugin) {
                 args.push('--experimental-classify-plugin', experimentalClassifyPlugin);
             }
+            args.push(...runArgs);
             core.debug(args.join(' '));
             process.env['MAPI_TOKEN'] = mapiToken;
             // We expect the token to be a service account which can only belong to a
