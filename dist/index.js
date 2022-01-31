@@ -98,6 +98,7 @@ function run() {
             const apiUrl = core.getInput('api-url', { required: true });
             const apiSpec = core.getInput('api-spec', { required: true });
             const duration = core.getInput('duration', { required: true });
+            const target = core.getInput('target');
             const sarifReport = core.getInput('sarif-report');
             const htmlReport = core.getInput('html-report');
             const experimentalRewritePlugin = core.getInput('experimental-rewrite-plugin');
@@ -108,7 +109,7 @@ function run() {
             if (repo === undefined) {
                 throw Error('Missing GITHUB_REPOSITORY environment variable. Are you not running this in a Github Action environment?');
             }
-            const apiName = (0, slugify_1.default)(repo.replace('/', '-'), { lower: true });
+            const apiName = target !== null && target !== void 0 ? target : (0, slugify_1.default)(repo.replace('/', '-'), { lower: true });
             // Generate mapi run args based on inputs
             const args = ['run', apiName, duration, apiSpec, '--url', apiUrl];
             if (sarifReport) {

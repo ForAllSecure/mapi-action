@@ -82,7 +82,8 @@ The action accepts the follow inputs:
 | ✔️ | `mapi-token` | string | Mayhem for API service account token |
 | ✔️ | `api-url` | string | URL to your running API. *Example:* http://localhost:8000/api/v1 |
 | ✔️ | `api-spec` | string | Path or URL to your Swagger spec, OpenAPI spec, or Postman collection.|
-|   | `duration` | number | Duration of scan, in seconds | 60
+|   | `target` | string | The organization-scoped name of your target, such as `forallsecure/mapi-action-example` | auto-generated from your GitHub Repository name
+|   | `duration` | number | Duration of scan, in seconds | 60sec
 |   | `html-report` | string | Path to the generated SARIF report |
 |   | `sarif-report` | string | Path to the generated HTML report |
 |   | `run-args` | string | Additional arguments to provide to the `mapi run` command. |

@@ -11,6 +11,8 @@ inputs:
   api-spec:
     description: Path to your Swagger 2.0 or OpenAPI 3.0 specification, or your Postman collection. Can be a URL.
     required: true
+  target:
+    description: The organization-scoped name of your target, such as example/my-test-target. Auto-generated from your GitHub Repository name if unspecified.
   duration:
     description: Scan duration
     default: 60sec
