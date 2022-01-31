@@ -109,7 +109,9 @@ function run() {
             if (repo === undefined) {
                 throw Error('Missing GITHUB_REPOSITORY environment variable. Are you not running this in a Github Action environment?');
             }
-            const apiName = target !== null && target !== void 0 ? target : (0, slugify_1.default)(repo.replace('/', '-'), { lower: true });
+            const apiName = target === '' || target === undefined || target === null
+                ? (0, slugify_1.default)(repo.replace('/', '-'), { lower: true })
+                : target;
             // Generate mapi run args based on inputs
             const args = ['run', apiName, duration, apiSpec, '--url', apiUrl];
             if (sarifReport) {
