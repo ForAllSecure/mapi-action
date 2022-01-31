@@ -61,6 +61,7 @@ async function run(): Promise<void> {
     const apiUrl: string = core.getInput('api-url', {required: true})
     const apiSpec: string = core.getInput('api-spec', {required: true})
     const duration: string = core.getInput('duration', {required: true})
+    const target: string | undefined = core.getInput('target')
     const sarifReport: string | undefined = core.getInput('sarif-report')
     const htmlReport: string | undefined = core.getInput('html-report')
     const experimentalRewritePlugin: string | undefined = core.getInput(
@@ -78,7 +79,10 @@ async function run(): Promise<void> {
         'Missing GITHUB_REPOSITORY environment variable. Are you not running this in a Github Action environment?'
       )
     }
-    const apiName = slugify(repo.replace('/', '-'), {lower: true})
+    const apiName =
+      target === '' || target === undefined || target === null
+        ? slugify(repo.replace('/', '-'), {lower: true})
+        : target
 
     // Generate mapi run args based on inputs
     const args = ['run', apiName, duration, apiSpec, '--url', apiUrl]
