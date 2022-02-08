@@ -114,7 +114,7 @@ jobs:
         api-url: http://localhost:8000 # <- update this
         api-spec: your-openapi-spec-or-postman-collection.json
         # Additional 'mapi run' arguments
-        run-args:|
+        run-args: |
           # Do not fuzz the '/logout' endpoint
           --ignore-endpoint
           /logout
