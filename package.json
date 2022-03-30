@@ -29,7 +29,7 @@
     "@actions/core": "^1.6.0",
     "@actions/exec": "^1.1.0",
     "@actions/tool-cache": "^1.7.1",
-    "axios": "^0.24.0",
+    "axios": "^0.26.1",
     "slugify": "^1.6.5"
   },
   "devDependencies": {
