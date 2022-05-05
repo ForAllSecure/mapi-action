@@ -46,7 +46,7 @@ Want to try it? [Sign up for free](http://mayhem4api.forallsecure.com/signup) to
 3. Add the following text to the file and tweak it for your codebase
 
 ```yaml
-name: Example workflow for Mayhem for API
+name: Mayhem for API
 on: push
 jobs:
   security:
@@ -95,7 +95,7 @@ want to ensure the Action continues, even if Mayhem for API found
 issues, then continue-on-error can be used.
 
 ```yaml
-name: Example workflow for Mayhem for API
+name: Mayhem for API
 on: push
 jobs:
   security:
