@@ -57,7 +57,7 @@ async function run(): Promise<void> {
     const cli = await mapiCLI()
 
     // Load inputs
-    const mapiToken: string = core.getInput('mapi-token', {required: true})
+    const mapiToken: string = core.getInput('mapi-token')
     const apiUrl: string = core.getInput('api-url', {required: true})
     const apiSpec: string = core.getInput('api-spec', {required: true})
     const duration: string = core.getInput('duration', {required: true})
@@ -102,7 +102,9 @@ async function run(): Promise<void> {
 
     core.debug(args.join(' '))
 
-    process.env['MAPI_TOKEN'] = mapiToken
+    if (mapiToken) {
+      process.env['MAPI_TOKEN'] = mapiToken
+    }
 
     // We expect the token to be a service account which can only belong to a
     // single organization, therefore we do not need to specify the org

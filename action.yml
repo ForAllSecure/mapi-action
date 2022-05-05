@@ -4,7 +4,6 @@ author: 'ForAllSecure'
 inputs:
   mapi-token:
     description: Mayhem for API service account token
-    required: true
   api-url:
     description: URL pointing to your running API you started before calling this action (don't fuzz your production API!)
     required: true

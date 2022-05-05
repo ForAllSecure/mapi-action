@@ -31,6 +31,9 @@ on:
   pull_request:
     branches: [ main, master ]
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   mayhem-for-api:
     runs-on: ubuntu-latest
