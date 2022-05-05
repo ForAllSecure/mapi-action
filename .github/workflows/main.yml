@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       MAPI_TOKEN: ${{ secrets.MAPI_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v2
       - run: |
@@ -22,6 +23,7 @@ jobs:
         continue-on-error: true
         with:
           mapi-token: ${{ secrets.MAPI_TOKEN }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
           api-url: https://demo-api.mayhem4api.forallsecure.com/api/v3
           api-spec: https://demo-api.mayhem4api.forallsecure.com/api/v3/openapi.json
           html-report: mapi.html

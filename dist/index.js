@@ -95,6 +95,7 @@ function run() {
             const cli = yield mapiCLI();
             // Load inputs
             const mapiToken = core.getInput('mapi-token');
+            const githubToken = core.getInput('github-token', { required: true });
             const apiUrl = core.getInput('api-url', { required: true });
             const apiSpec = core.getInput('api-spec', { required: true });
             const duration = core.getInput('duration', { required: true });
@@ -131,6 +132,7 @@ function run() {
             if (mapiToken) {
                 process.env['MAPI_TOKEN'] = mapiToken;
             }
+            process.env['GITHUB_TOKEN'] = githubToken;
             // We expect the token to be a service account which can only belong to a
             // single organization, therefore we do not need to specify the org
             // explicitly in the target argument.

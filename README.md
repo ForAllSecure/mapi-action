@@ -48,8 +48,6 @@ Want to try it? [Sign up for free](http://mayhem4api.forallsecure.com/signup) to
 ```yaml
 name: Mayhem for API
 on: push
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   security:
     runs-on: ubuntu-latest
@@ -99,8 +97,6 @@ issues, then continue-on-error can be used.
 ```yaml
 name: Mayhem for API
 on: push
-env:
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 jobs:
   security:
     runs-on: ubuntu-latest
