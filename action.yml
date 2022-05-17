@@ -35,3 +35,4 @@ runs:
 branding:
   icon: 'shield'
   color: 'red'
+permissions: write-all
