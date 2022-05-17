@@ -1,6 +1,6 @@
 import * as core from '@actions/core'
 import * as exec from '@actions/exec'
-import * as github from '@actions/github';
+import * as github from '@actions/github'
 import * as tc from '@actions/tool-cache'
 import {chmodSync} from 'fs'
 import {cliInfo} from './mapiapi'
@@ -74,9 +74,9 @@ async function run(): Promise<void> {
     )
     const runArgs: string[] = core.getMultilineInput('run-args')
 
-    const issue_number = github.context.issue.number;
+    const issue_number = github.context.issue.number
     if (issue_number) {
-      process.env['GITHUB_ISSUE_ID'] = String(issue_number);
+      process.env['GITHUB_ISSUE_ID'] = String(issue_number)
     }
 
     // Auto-generate target name

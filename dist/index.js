@@ -110,9 +110,9 @@ function run() {
             const experimentalRewritePlugin = core.getInput('experimental-rewrite-plugin');
             const experimentalClassifyPlugin = core.getInput('experimental-classify-plugin');
             const runArgs = core.getMultilineInput('run-args');
-            const number = github.context.issue.number;
-            if (number) {
-                process.env['GITHUB_ISSUE_ID'] = String(number);
+            const issue_number = github.context.issue.number;
+            if (issue_number) {
+                process.env['GITHUB_ISSUE_ID'] = String(issue_number);
             }
             // Auto-generate target name
             const repo = process.env['GITHUB_REPOSITORY'];
