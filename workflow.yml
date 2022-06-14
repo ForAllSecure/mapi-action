@@ -50,7 +50,6 @@ jobs:
           mapi-token: ${{ secrets.MAPI_TOKEN }}
           api-url: "http://localhost:8080"               # <- update this
           api-spec: "http://localhost:8080/openapi.json" # <- update this
-          duration: 60sec
           sarif-report: mapi.sarif
           html-report: mapi.html
           run-args: |                                   # <- Additional run args

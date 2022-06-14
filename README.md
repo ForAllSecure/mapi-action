@@ -85,7 +85,7 @@ The action accepts the follow inputs:
 | ✔️ | `api-url` | string | URL to your running API. *Example:* http://localhost:8000/api/v1 |
 | ✔️ | `api-spec` | string | Path or URL to your Swagger spec, OpenAPI spec, or Postman collection.|
 |   | `target` | string | The organization-scoped name of your target, such as `forallsecure/mapi-action-example` | auto-generated from your GitHub Repository name
-|   | `duration` | number | Duration of scan, in seconds | 60sec
+|   | `duration` | number/string | Duration of scan. 'auto' for automatic duration. Otherwise time (ie: '30sec', '5min', '1h', '1h30m') | auto
 |   | `html-report` | string | Path to the generated SARIF report |
 |   | `sarif-report` | string | Path to the generated HTML report |
 |   | `run-args` | string | Additional arguments to provide to the `mapi run` command. |
