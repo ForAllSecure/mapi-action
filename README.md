@@ -88,7 +88,7 @@ The action accepts the follow inputs:
 |   | `duration` | number/string | Duration of scan. 'auto' for automatic duration. Otherwise time (ie: '30sec', '5min', '1h', '1h30m') | auto
 |   | `html-report` | string | Path to the generated SARIF report |
 |   | `sarif-report` | string | Path to the generated HTML report |
-|   | `run-args` | string | Additional arguments to provide to the `mapi run` command. |
+|   | `run-args` | string | Additional arguments to provide to the `mapi run` command.  Argument values should be separated on new lines. <br><br>e.g.<br> <pre>  run-args: \|<br>    # Basic Auth<br>    --basic-auth<br>    login:password</pre>|
 
 ### Continuing on error
 
@@ -119,6 +119,9 @@ jobs:
         api-spec: your-openapi-spec-or-postman-collection.json
         # Additional 'mapi run' arguments
         run-args: |
+          # Basic Auth
+          --basic-auth
+          login:password
           # Do not fuzz the '/logout' endpoint
           --ignore-endpoint
           /logout
