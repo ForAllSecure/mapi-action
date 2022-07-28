@@ -30,10 +30,7 @@ const mapi_api_run = (additional_env: {[key: string]: string}) => {
     }
     expect(error.stdout.toString()).toEqual(
       expect.stringContaining('Fuzzing complete!,')
-    )
-    expect(error.stdout.toString()).toEqual(
-      expect.stringContaining('Found internal-server-error!')
-    )
+    )    
     expect(error.stdout.toString()).toEqual(
       expect.stringContaining('The Mayhem for API scan found issues in the API')
     )
