@@ -14,6 +14,7 @@ inputs:
     description: The organization-scoped name of your target, such as example/my-test-target. Auto-generated from your GitHub Repository name if unspecified.
   zap-api-scan:
     description: Include results from ZAP - API Scan. This run ZAP - API Scan and merge the results with your Mayhem for API results.
+    default: 'false'
   duration:
     description: Scan duration
     default: auto
