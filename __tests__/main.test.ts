@@ -12,6 +12,7 @@ const mapi_api_run = (additional_env: {[key: string]: string}) => {
   process.env['INPUT_MAPI-TOKEN'] = process.env.MAPI_TOKEN
   process.env['INPUT_GITHUB-TOKEN'] = process.env.GITHUB_TOKEN
   process.env['INPUT_DURATION'] = '10'
+  process.env['INPUT_ZAP-API-SCAN'] = 'true'
   process.env['INPUT_API-URL'] =
     'https://demo-api.mayhem4api.forallsecure.com/api/v3'
   process.env['INPUT_API-SPEC'] =
@@ -30,7 +31,7 @@ const mapi_api_run = (additional_env: {[key: string]: string}) => {
     }
     expect(error.stdout.toString()).toEqual(
       expect.stringContaining('Fuzzing complete!,')
-    )    
+    )
     expect(error.stdout.toString()).toEqual(
       expect.stringContaining('The Mayhem for API scan found issues in the API')
     )

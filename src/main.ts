@@ -64,6 +64,7 @@ async function run(): Promise<void> {
     const apiSpec: string = core.getInput('api-spec', {required: true})
     const duration: string = core.getInput('duration', {required: true})
     const target: string | undefined = core.getInput('target')
+    const zapApiScan: boolean | undefined = core.getBooleanInput('zap-api-scan')
     const sarifReport: string | undefined = core.getInput('sarif-report')
     const htmlReport: string | undefined = core.getInput('html-report')
     const experimentalRewritePlugin: string | undefined = core.getInput(
@@ -104,6 +105,9 @@ async function run(): Promise<void> {
     }
     if (experimentalClassifyPlugin) {
       args.push('--experimental-classify-plugin', experimentalClassifyPlugin)
+    }
+    if (zapApiScan) {
+      args.push('--zap')
     }
     args.push(...runArgs)
 
