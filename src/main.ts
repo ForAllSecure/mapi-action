@@ -67,6 +67,8 @@ async function run(): Promise<void> {
     const zapApiScan: boolean | undefined = core.getBooleanInput('zap-api-scan')
     const sarifReport: string | undefined = core.getInput('sarif-report')
     const htmlReport: string | undefined = core.getInput('html-report')
+    const postmanApiKey: string | undefined = core.getInput('postman-api-key')
+    const postmanEnvironment: string | undefined = core.getInput('postman-environment')
     const experimentalRewritePlugin: string | undefined = core.getInput(
       'experimental-rewrite-plugin'
     )
@@ -99,6 +101,12 @@ async function run(): Promise<void> {
     }
     if (htmlReport) {
       args.push('--html', htmlReport)
+    }
+    if (postmanApiKey) {
+      args.push('--postman-api-key', postmanApiKey)
+    }
+    if (postmanEnvironment) {
+      args.push('--postman-environment', postmanEnvironment)
     }
     if (experimentalRewritePlugin) {
       args.push('--experimental-rewrite-plugin', experimentalRewritePlugin)

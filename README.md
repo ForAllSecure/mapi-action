@@ -83,8 +83,10 @@ The action accepts the follow inputs:
 | --- | --- | --- | --- | ---
 | ✔️ | `mapi-token` | string | Mayhem for API service account token |
 | ✔️ | `api-url` | string | URL to your running API. *Example:* http://localhost:8000/api/v1 |
-| ✔️ | `api-spec` | string | Path or URL to your Swagger spec, OpenAPI spec, or Postman collection.|
+| ✔️ | `api-spec` | string | Path or URL to your Swagger spec, OpenAPI spec, or Postman collection file, or Postman [collection id](https://support.postman.com/hc/en-us/articles/5063785095319-How-to-find-the-ID-of-an-element-in-Postman).|
 |   | `target` | string | The organization-scoped name of your target, such as `forallsecure/mapi-action-example` | auto-generated from your GitHub Repository name
+|   | `postman-api-key` | string | Postman [API key](https://learning.postman.com/docs/developer/intro-api/) for api specs that are private postman collection ids.
+|   | `postman-environment` | string | Path or id of a Postman [Environment](https://learning.postman.com/docs/sending-requests/managing-environments/).
 |   | `zap-api-scan` | boolean | Include results from [ZAP - API Scan](https://www.zaproxy.org/docs/docker/api-scan/) | false |
 |   | `duration` | number/string | Duration of scan. 'auto' for automatic duration. Otherwise time (ie: '30sec', '5min', '1h', '1h30m') | auto
 |   | `html-report` | string | Path to the generated SARIF report |
