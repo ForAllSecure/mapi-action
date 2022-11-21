@@ -43,7 +43,9 @@ Want to try it? [Sign up for free](http://mayhem4api.forallsecure.com/signup) to
     .github/workflows/ForAllSecure-Mayhem-for-API.yml
 ```
 
-3. Add the following text to the file and tweak it for your codebase
+3. Add the following text to the file and tweak it for your codebase.
+
+    **Note**: To auto-detect diffs, Mayhem needs a deeper repository clone than the default of actions/checkout@v3.  Set `fetch-depth` to 0 for a full clone, or deeper clones to fetch enough commit history to compute a merge base for the branch.
 
 ```yaml
 name: Mayhem for API
@@ -54,7 +56,10 @@ jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
+      with:
+        # fetch entire history to compute diffs between jobs
+        fetch-depth: 0
 
     - name: Start your API
       run: ./run_your_api.sh & # <----------------------------------- UPDATE THIS
@@ -108,7 +113,10 @@ jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
+      with:
+        # fetch a greater number of commits for computing diffs between jobs
+        fetch-depth: 50
 
     - name: Start your API
       run: ./run_your_api.sh &

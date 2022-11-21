@@ -9,7 +9,10 @@ jobs:
       MAPI_TOKEN: ${{ secrets.MAPI_TOKEN }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          # fetch entire history to compute diffs between jobs
+          fetch-depth: 0
       - run: |
           npm install
       - run: |
@@ -17,7 +20,10 @@ jobs:
   test: # make sure the action works on a clean machine without building
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+        with:
+          # fetch entire history to compute diffs between jobs
+          fetch-depth: 0
 
       - uses: ./
         continue-on-error: true
