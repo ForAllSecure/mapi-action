@@ -33,7 +33,7 @@ inputs:
   run-args:
     description: A list of additional arguments (separated by '\n') to include in the call to 'mapi run'. Run 'mapi run --help' for a complete list of arguments.
 runs:
-  using: 'node12'
+  using: 'node16'
   main: 'dist/index.js'
 branding:
   icon: 'shield'
