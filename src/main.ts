@@ -59,6 +59,7 @@ async function run(): Promise<void> {
 
     // Load inputs
     const mapiToken: string = core.getInput('mapi-token')
+    const mapiUrl: string | undefined = core.getInput('mapi-url')
     const githubToken: string = core.getInput('github-token', {required: true})
     const apiUrl: string = core.getInput('api-url', {required: true})
     const apiSpec: string = core.getInput('api-spec', {required: true})
@@ -68,7 +69,9 @@ async function run(): Promise<void> {
     const sarifReport: string | undefined = core.getInput('sarif-report')
     const htmlReport: string | undefined = core.getInput('html-report')
     const postmanApiKey: string | undefined = core.getInput('postman-api-key')
-    const postmanEnvironment: string | undefined = core.getInput('postman-environment')
+    const postmanEnvironment: string | undefined = core.getInput(
+      'postman-environment'
+    )
     const experimentalRewritePlugin: string | undefined = core.getInput(
       'experimental-rewrite-plugin'
     )
@@ -123,6 +126,9 @@ async function run(): Promise<void> {
 
     if (mapiToken) {
       process.env['MAPI_TOKEN'] = mapiToken
+    }
+    if (mapiUrl) {
+      process.env['MAPI_URL'] = mapiUrl
     }
     process.env['GITHUB_TOKEN'] = githubToken
 
