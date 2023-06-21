@@ -4,16 +4,13 @@
 #
 # To use this workflow, you will need to:
 #
-# 1. Create a Mayhem for API account at
-#    https://mayhem4api.forallsecure.com/signup
+# 1. Create a Mayhem account at
+#    https://app.mayhem.security
 #
-# 2. Create a service account token:
-#   ```
-#     mapi organization service-account create <org-name> <service-account-name>
-#   ```
+# 2. Create an API token following https://app.mayhem.security/docs/api-testing/getting-set-up/generating-api-tokens/
 #
 # 3. In your repo's settings, add the service account token as a secret in
-#    GitHub called "MAPI_TOKEN".  More details on adding encrypted secrets
+#    GitHub called "MAYHEM_TOKEN".  More details on adding encrypted secrets
 #    instructions found at https://docs.github.com/en/actions/security-guides/encrypted-secrets#creating-encrypted-secrets-for-a-repository
 #
 #
@@ -50,7 +47,7 @@ jobs:
         uses: ForAllSecure/mapi-action@v1
         continue-on-error: true
         with:
-          mapi-token: ${{ secrets.MAPI_TOKEN }}
+          mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
           api-url: "http://localhost:8080"               # <- update this
           api-spec: "http://localhost:8080/openapi.json" # <- update this
           sarif-report: mapi.sarif

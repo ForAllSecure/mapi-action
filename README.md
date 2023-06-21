@@ -26,16 +26,11 @@ Want to try it? [Sign up for free](http://mayhem4api.forallsecure.com/signup) to
 
 1. Get a Mayhem for API token
 
-    a. [Sign up for Mayhem for API for free and install `mapi`](http://mayhem4api.forallsecure.com/signup)
+    a. [Sign up for Mayhem for free and install `mapi`](https://app.mayhem.security)
 
-    b. Create a [service account token](https://mayhem4api.forallsecure.com/docs/ch01-03-organizations.html#service-accounts)
-       using the Mayhem for API CLI
+    b. Create an [API token](https://app.mayhem.security/docs/api-testing/getting-set-up/generating-api-tokens/)
 
-      ```
-        mapi organization service-account create <your-org> <service-account-name>
-      ```
-
-    c. Add your service account token with name `MAPI_TOKEN` on your repository's GitHub page at
+    c. Add your API token with name `MAYHEM_TOKEN` on your repository's GitHub page at
        `Settings` → `Secrets` → `New repository secret`
 
 2. Create a file in _your_ GitHub repository at:
@@ -67,7 +62,7 @@ jobs:
     - name: Run Mayhem for API to check for vulnerabilities
       uses: ForAllSecure/mapi-action@v1
       with:
-        mapi-token: ${{ secrets.MAPI_TOKEN }}
+        mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
         api-url: http://localhost:8000 # <--------------------------- UPDATE THIS
         api-spec: your-openapi-spec-or-postman-collection.json # <--- UPDATE THIS
 ```
@@ -86,7 +81,7 @@ The action accepts the follow inputs:
 
 | Required | Input Name | Type | Description | Default
 | --- | --- | --- | --- | ---
-| ✔️ | `mapi-token` | string | Mayhem for API service account token |
+| ✔️ | `mayhem-token` | string | Mayhem API token |
 | ✔️ | `api-url` | string | URL to your running API. *Example:* http://localhost:8000/api/v1 |
 | ✔️ | `api-spec` | string | Path or URL to your Swagger spec, OpenAPI spec, or Postman collection file, or Postman [collection id](https://support.postman.com/hc/en-us/articles/5063785095319-How-to-find-the-ID-of-an-element-in-Postman).|
 |   | `target` | string | The organization-scoped name of your target, such as `forallsecure/mapi-action-example` | auto-generated from your GitHub Repository name
@@ -125,7 +120,7 @@ jobs:
       uses: ForAllSecure/mapi-action@v1
       continue-on-error: true # <-----------------------------------------------
       with:
-        mapi-token: ${{ secrets.MAPI_TOKEN }}
+        mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
         api-url: http://localhost:8000 # <- update this
         api-spec: your-openapi-spec-or-postman-collection.json
         # Additional 'mapi run' arguments
@@ -159,7 +154,7 @@ To artifact the report in your build, add this step to your pipeline:
   uses: ForAllSecure/mapi-action@v1
   continue-on-error: true
   with:
-    mapi-token: ${{ secrets.MAPI_TOKEN }}
+    mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
     api-url: http://localhost:8000 # <- update this
     api-spec: your-openapi-spec-or-postman-collection.json # <- update this
     html-report: mapi.html
@@ -188,7 +183,7 @@ step to your pipeline:
   uses: ForAllSecure/mapi-action@v1
   continue-on-error: true
   with:
-    mapi-token: ${{ secrets.MAPI_TOKEN }}
+    mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
     api-url: http://localhost:8000 # <- update this
     api-spec: your-openapi-spec-or-postman-collection.json # <- update this
     sarif-report: mapi.sarif

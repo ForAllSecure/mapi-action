@@ -40,7 +40,7 @@ async function mapiCLI(): Promise<string> {
 
   // Download the CLI and cache it if version is set
   const mapiPath = await tc.downloadTool(
-    `https://mayhem4api.forallsecure.com/downloads/cli/${cliVersion}/${os}/${bin}`
+    `https://app.mayhem.security/cli/mapi/${os}/${cliVersion}/${bin}`
   )
   chmodSync(mapiPath, 0o755)
   if (cliVersion === 'latest') {
@@ -58,8 +58,8 @@ async function run(): Promise<void> {
     const cli = await mapiCLI()
 
     // Load inputs
-    const mapiToken: string = core.getInput('mapi-token')
-    const mapiUrl: string | undefined = core.getInput('mapi-url')
+    const mayhemToken: string = core.getInput('mayhem-token')
+    const mayhemUrl: string | undefined = core.getInput('mayhem-url')
     const githubToken: string = core.getInput('github-token', {required: true})
     const apiUrl: string = core.getInput('api-url', {required: true})
     const apiSpec: string = core.getInput('api-spec', {required: true})
@@ -124,11 +124,11 @@ async function run(): Promise<void> {
 
     core.debug(args.join(' '))
 
-    if (mapiToken) {
-      process.env['MAPI_TOKEN'] = mapiToken
+    if (mayhemToken) {
+      process.env['MAYHEM_TOKEN'] = mayhemToken
     }
-    if (mapiUrl) {
-      process.env['MAPI_URL'] = mapiUrl
+    if (mayhemUrl) {
+      process.env['MAYHEM_URL'] = mayhemUrl
     }
     process.env['GITHUB_TOKEN'] = githubToken
 
