@@ -58,8 +58,10 @@ async function run(): Promise<void> {
     const cli = await mapiCLI()
 
     // Load inputs
+    const mapiToken: string = core.getInput('mapi-token')
+    const mapiUrl: string = core.getInput('mapi-url')
     const mayhemToken: string = core.getInput('mayhem-token')
-    const mayhemUrl: string | undefined = core.getInput('mayhem-url')
+    const mayhemUrl: string = core.getInput('mayhem-url')
     const githubToken: string = core.getInput('github-token', {required: true})
     const apiUrl: string = core.getInput('api-url', {required: true})
     const apiSpec: string = core.getInput('api-spec', {required: true})
@@ -124,11 +126,11 @@ async function run(): Promise<void> {
 
     core.debug(args.join(' '))
 
-    if (mayhemToken) {
-      process.env['MAYHEM_TOKEN'] = mayhemToken
+    if (mayhemToken || mapiToken) {
+      process.env['MAYHEM_TOKEN'] = mayhemToken || mapiToken
     }
-    if (mayhemUrl) {
-      process.env['MAYHEM_URL'] = mayhemUrl
+    if (mayhemUrl || mapiUrl) {
+      process.env['MAYHEM_URL'] = mayhemUrl || mapiUrl
     }
     process.env['GITHUB_TOKEN'] = githubToken
 

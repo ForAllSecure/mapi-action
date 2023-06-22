@@ -83,7 +83,7 @@ function mapiCLI() {
             return `${cachedPath}/${bin}`;
         }
         // Download the CLI and cache it if version is set
-        const mapiPath = yield tc.downloadTool(`https://mayhem4api.forallsecure.com/downloads/cli/${cliVersion}/${os}/${bin}`);
+        const mapiPath = yield tc.downloadTool(`https://app.mayhem.security/cli/mapi/${os}/${cliVersion}/${bin}`);
         (0, fs_1.chmodSync)(mapiPath, 0o755);
         if (cliVersion === 'latest') {
             return mapiPath;
@@ -101,6 +101,8 @@ function run() {
             // Load inputs
             const mapiToken = core.getInput('mapi-token');
             const mapiUrl = core.getInput('mapi-url');
+            const mayhemToken = core.getInput('mayhem-token');
+            const mayhemUrl = core.getInput('mayhem-url');
             const githubToken = core.getInput('github-token', { required: true });
             const apiUrl = core.getInput('api-url', { required: true });
             const apiSpec = core.getInput('api-spec', { required: true });
@@ -151,11 +153,11 @@ function run() {
             }
             args.push(...runArgs);
             core.debug(args.join(' '));
-            if (mapiToken) {
-                process.env['MAPI_TOKEN'] = mapiToken;
+            if (mayhemToken || mapiToken) {
+                process.env['MAYHEM_TOKEN'] = mayhemToken || mapiToken;
             }
-            if (mapiUrl) {
-                process.env['MAPI_URL'] = mapiUrl;
+            if (mayhemUrl || mapiUrl) {
+                process.env['MAYHEM_URL'] = mayhemUrl || mapiUrl;
             }
             process.env['GITHUB_TOKEN'] = githubToken;
             // We expect the token to be a service account which can only belong to a
