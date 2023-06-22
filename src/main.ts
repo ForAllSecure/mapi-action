@@ -3,13 +3,12 @@ import * as exec from '@actions/exec'
 import * as github from '@actions/github'
 import * as tc from '@actions/tool-cache'
 import {chmodSync} from 'fs'
-import {cliInfo} from './mapiapi'
 import slugify from 'slugify'
 
 // Return local path to donwloaded or cached CLI
 async function mapiCLI(): Promise<string> {
   // Get latest version from API
-  let cliVersion = 'latest'
+  const cliVersion = 'latest'
 
   // Infer right version from environment
   let os = ''
