@@ -10,14 +10,6 @@ import slugify from 'slugify'
 async function mapiCLI(): Promise<string> {
   // Get latest version from API
   let cliVersion = 'latest'
-  try {
-    cliVersion = (await cliInfo()).latest_version
-  } catch (err: unknown) {
-    if (err instanceof Error) {
-      core.info(err.message)
-      core.debug('Could not get CLI version. Using latest')
-    }
-  }
 
   // Infer right version from environment
   let os = ''
