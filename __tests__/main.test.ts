@@ -38,7 +38,7 @@ const mapi_api_run = (additional_env: {[key: string]: string}) => {
   }
 }
 
-test('test MAPI_TOKEN authentication', () => {
+test('test MAYHEM_TOKEN authentication', () => {
   if (process.env.MAYHEM_TOKEN) {
     mapi_api_run({
       'INPUT_MAYHEM-TOKEN': process.env.MAYHEM_TOKEN,

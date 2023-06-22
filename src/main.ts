@@ -3,12 +3,11 @@ import * as exec from '@actions/exec'
 import * as github from '@actions/github'
 import * as tc from '@actions/tool-cache'
 import {chmodSync} from 'fs'
+import {cliInfo} from './mapiapi'
 import slugify from 'slugify'
 
 // Return local path to donwloaded or cached CLI
 async function mapiCLI(): Promise<string> {
-  const cliVersion = 'latest'
-
   // Infer right version from environment
   let os = ''
   let bin = 'mapi'
@@ -21,8 +20,19 @@ async function mapiCLI(): Promise<string> {
     os = 'linux-musl'
   }
 
+  // Get latest version from API
+  let cliVersion = 'latest'
+  try {
+    cliVersion = (await cliInfo(os, bin)).version
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      core.info(err.message)
+      core.debug('Could not get CLI version. Using latest')
+    }
+  }
+
   // Return cache if available
-  const cachedPath = tc.find('mapi', cliVersion, os)
+  const cachedPath = tc.find('security.mayhem.app.cli.mapi', cliVersion, os)
   if (cachedPath) {
     core.debug(`found cache: ${cachedPath}`)
     return `${cachedPath}/${bin}`
@@ -37,7 +47,13 @@ async function mapiCLI(): Promise<string> {
     return mapiPath
   }
 
-  const folder = await tc.cacheFile(mapiPath, bin, 'mapi', cliVersion, os)
+  const folder = await tc.cacheFile(
+    mapiPath,
+    bin,
+    'security.mayhem.app.cli.mapi',
+    cliVersion,
+    os
+  )
   return `${folder}/${bin}`
 }
 
