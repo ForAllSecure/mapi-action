@@ -8,6 +8,8 @@ jobs:
     runs-on: ubuntu-latest
     # Only run on labeled PRs to avoid leaking secrets
     if: contains(github.event.pull_request.labels.*.name, 'safe-to-test')
+    env:
+      MAYHEM_TOKEN: ${{ secrets.MAYHEM_TOKEN }}
     steps:
       - uses: actions/checkout@v3
         with:
