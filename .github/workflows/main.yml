@@ -7,7 +7,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       MAPI_TOKEN: ${{ secrets.MAPI_TOKEN }}
-      MAYHEM_TOKEN: ${{ secrets.MAYHEM_TOKEN }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
