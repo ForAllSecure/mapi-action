@@ -51,7 +51,6 @@ const slugify_1 = __importDefault(__nccwpck_require__(9481));
 // Return local path to donwloaded or cached CLI
 function mapiCLI() {
     return __awaiter(this, void 0, void 0, function* () {
-        // Get latest version from API
         const cliVersion = 'latest';
         // Infer right version from environment
         let os = '';
@@ -89,8 +88,6 @@ function run() {
             process.env['SKIP_MAPI_AUTO_UPDATE'] = 'true';
             const cli = yield mapiCLI();
             // Load inputs
-            const mapiToken = core.getInput('mapi-token');
-            const mapiUrl = core.getInput('mapi-url');
             const mayhemToken = core.getInput('mayhem-token');
             const mayhemUrl = core.getInput('mayhem-url');
             const githubToken = core.getInput('github-token', { required: true });
@@ -143,11 +140,11 @@ function run() {
             }
             args.push(...runArgs);
             core.debug(args.join(' '));
-            if (mayhemToken || mapiToken) {
-                process.env['MAYHEM_TOKEN'] = mayhemToken || mapiToken;
+            if (mayhemToken) {
+                process.env['MAYHEM_TOKEN'] = mayhemToken;
             }
-            if (mayhemUrl || mapiUrl) {
-                process.env['MAYHEM_URL'] = mayhemUrl || mapiUrl;
+            if (mayhemUrl) {
+                process.env['MAYHEM_URL'] = mayhemUrl;
             }
             process.env['GITHUB_TOKEN'] = githubToken;
             // We expect the token to be a service account which can only belong to a

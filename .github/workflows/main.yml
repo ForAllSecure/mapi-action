@@ -6,7 +6,7 @@ jobs:
   build: # make sure build/ci work properly
     runs-on: ubuntu-latest
     env:
-      MAPI_TOKEN: ${{ secrets.MAPI_TOKEN }}
+      MAYHEM_TOKEN: ${{ secrets.MAYHEM_TOKEN }}
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v3
@@ -25,19 +25,6 @@ jobs:
           # fetch entire history to compute diffs between jobs
           fetch-depth: 0
 
-      - uses: ./
-        continue-on-error: true
-        with:
-          mapi-token: ${{ secrets.MAPI_TOKEN }}
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          api-url: https://demo-api.mayhem4api.forallsecure.com/api/v3
-          api-spec: https://demo-api.mayhem4api.forallsecure.com/api/v3/openapi.json
-          html-report: mapi.html
-          zap-api-scan: true
-          run-args: |
-            --warnaserror
-            --junit
-            junit.xml
       - uses: ./
         continue-on-error: true
         with:

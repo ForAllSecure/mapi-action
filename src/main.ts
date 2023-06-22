@@ -7,7 +7,6 @@ import slugify from 'slugify'
 
 // Return local path to donwloaded or cached CLI
 async function mapiCLI(): Promise<string> {
-  // Get latest version from API
   const cliVersion = 'latest'
 
   // Infer right version from environment
@@ -49,8 +48,6 @@ async function run(): Promise<void> {
     const cli = await mapiCLI()
 
     // Load inputs
-    const mapiToken: string = core.getInput('mapi-token')
-    const mapiUrl: string = core.getInput('mapi-url')
     const mayhemToken: string = core.getInput('mayhem-token')
     const mayhemUrl: string = core.getInput('mayhem-url')
     const githubToken: string = core.getInput('github-token', {required: true})
@@ -117,11 +114,11 @@ async function run(): Promise<void> {
 
     core.debug(args.join(' '))
 
-    if (mayhemToken || mapiToken) {
-      process.env['MAYHEM_TOKEN'] = mayhemToken || mapiToken
+    if (mayhemToken) {
+      process.env['MAYHEM_TOKEN'] = mayhemToken
     }
-    if (mayhemUrl || mapiUrl) {
-      process.env['MAYHEM_URL'] = mayhemUrl || mapiUrl
+    if (mayhemUrl) {
+      process.env['MAYHEM_URL'] = mayhemUrl
     }
     process.env['GITHUB_TOKEN'] = githubToken
 
