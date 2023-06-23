@@ -9,7 +9,7 @@ const mapi_api_run = (additional_env: {[key: string]: string}) => {
   process.env['GITHUB_REPOSITORY'] = 'ForAllSecure/mapi-action'
   process.env['RUNNER_TEMP'] = '/tmp'
   process.env['RUNNER_TOOL_CACHE'] = '/tmp'
-  process.env['INPUT_MAPI-TOKEN'] = process.env.MAPI_TOKEN
+  process.env['INPUT_MAYHEM-TOKEN'] = process.env.MAYHEM_TOKEN
   process.env['INPUT_GITHUB-TOKEN'] = process.env.GITHUB_TOKEN
   process.env['INPUT_DURATION'] = '10'
   process.env['INPUT_ZAP-API-SCAN'] = 'true'
@@ -38,15 +38,15 @@ const mapi_api_run = (additional_env: {[key: string]: string}) => {
   }
 }
 
-test('test MAPI_TOKEN authentication', () => {
-  if (process.env.MAPI_TOKEN) {
+test('test MAYHEM_TOKEN authentication', () => {
+  if (process.env.MAYHEM_TOKEN) {
     mapi_api_run({
-      'INPUT_MAPI-TOKEN': process.env.MAPI_TOKEN,
+      'INPUT_MAYHEM-TOKEN': process.env.MAYHEM_TOKEN,
       'INPUT_GITHUB-TOKEN': 'invalid github token'
     })
   } else {
     throw new Error(
-      'Environment variable MAPI_TOKEN required when running these tests.'
+      'Environment variable MAYHEM_TOKEN required when running these tests.'
     )
   }
 })
@@ -54,7 +54,7 @@ test('test MAPI_TOKEN authentication', () => {
 test('test github tokenless authentication', () => {
   if (process.env.GITHUB_TOKEN) {
     mapi_api_run({
-      'INPUT_MAPI-TOKEN': 'invalid mapi token',
+      'INPUT_MAYHEM-TOKEN': 'invalid Mayhem token',
       'INPUT_GITHUB-TOKEN': process.env.GITHUB_TOKEN
     })
   } else {

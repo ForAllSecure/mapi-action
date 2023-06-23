@@ -8,17 +8,6 @@ import slugify from 'slugify'
 
 // Return local path to donwloaded or cached CLI
 async function mapiCLI(): Promise<string> {
-  // Get latest version from API
-  let cliVersion = 'latest'
-  try {
-    cliVersion = (await cliInfo()).latest_version
-  } catch (err: unknown) {
-    if (err instanceof Error) {
-      core.info(err.message)
-      core.debug('Could not get CLI version. Using latest')
-    }
-  }
-
   // Infer right version from environment
   let os = ''
   let bin = 'mapi'
@@ -31,23 +20,42 @@ async function mapiCLI(): Promise<string> {
     os = 'linux-musl'
   }
 
-  // Return cache if available
-  const cachedPath = tc.find('mapi', cliVersion, os)
-  if (cachedPath) {
-    core.debug(`found cache: ${cachedPath}`)
-    return `${cachedPath}/${bin}`
+  // Get latest version from API
+  let cliVersion = 'latest'
+  try {
+    cliVersion = (await cliInfo(os, bin)).version
+  } catch (err: unknown) {
+    if (err instanceof Error) {
+      core.info(err.message)
+      core.debug('Could not get CLI version. Using latest')
+    }
+  }
+
+  if (cliVersion !== 'latest') {
+    // Return cache if available
+    const cachedPath = tc.find('security.mayhem.app.cli.mapi', cliVersion, os)
+    if (cachedPath) {
+      core.debug(`found cache: ${cachedPath}`)
+      return `${cachedPath}/${bin}`
+    }
   }
 
   // Download the CLI and cache it if version is set
   const mapiPath = await tc.downloadTool(
-    `https://mayhem4api.forallsecure.com/downloads/cli/${cliVersion}/${os}/${bin}`
+    `https://app.mayhem.security/cli/mapi/${os}/latest/${bin}`
   )
   chmodSync(mapiPath, 0o755)
   if (cliVersion === 'latest') {
     return mapiPath
   }
 
-  const folder = await tc.cacheFile(mapiPath, bin, 'mapi', cliVersion, os)
+  const folder = await tc.cacheFile(
+    mapiPath,
+    bin,
+    'security.mayhem.app.cli.mapi',
+    cliVersion,
+    os
+  )
   return `${folder}/${bin}`
 }
 
@@ -58,8 +66,8 @@ async function run(): Promise<void> {
     const cli = await mapiCLI()
 
     // Load inputs
-    const mapiToken: string = core.getInput('mapi-token')
-    const mapiUrl: string | undefined = core.getInput('mapi-url')
+    const mayhemToken: string = core.getInput('mayhem-token')
+    const mayhemUrl: string = core.getInput('mayhem-url')
     const githubToken: string = core.getInput('github-token', {required: true})
     const apiUrl: string = core.getInput('api-url', {required: true})
     const apiSpec: string = core.getInput('api-spec', {required: true})
@@ -124,11 +132,11 @@ async function run(): Promise<void> {
 
     core.debug(args.join(' '))
 
-    if (mapiToken) {
-      process.env['MAPI_TOKEN'] = mapiToken
+    if (mayhemToken) {
+      process.env['MAYHEM_TOKEN'] = mayhemToken
     }
-    if (mapiUrl) {
-      process.env['MAPI_URL'] = mapiUrl
+    if (mayhemUrl) {
+      process.env['MAYHEM_URL'] = mayhemUrl
     }
     process.env['GITHUB_TOKEN'] = githubToken
 

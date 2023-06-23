@@ -52,17 +52,6 @@ const slugify_1 = __importDefault(__nccwpck_require__(9481));
 // Return local path to donwloaded or cached CLI
 function mapiCLI() {
     return __awaiter(this, void 0, void 0, function* () {
-        // Get latest version from API
-        let cliVersion = 'latest';
-        try {
-            cliVersion = (yield (0, mapiapi_1.cliInfo)()).latest_version;
-        }
-        catch (err) {
-            if (err instanceof Error) {
-                core.info(err.message);
-                core.debug('Could not get CLI version. Using latest');
-            }
-        }
         // Infer right version from environment
         let os = '';
         let bin = 'mapi';
@@ -76,19 +65,32 @@ function mapiCLI() {
         else {
             os = 'linux-musl';
         }
-        // Return cache if available
-        const cachedPath = tc.find('mapi', cliVersion, os);
-        if (cachedPath) {
-            core.debug(`found cache: ${cachedPath}`);
-            return `${cachedPath}/${bin}`;
+        // Get latest version from API
+        let cliVersion = 'latest';
+        try {
+            cliVersion = (yield (0, mapiapi_1.cliInfo)(os, bin)).version;
+        }
+        catch (err) {
+            if (err instanceof Error) {
+                core.info(err.message);
+                core.debug('Could not get CLI version. Using latest');
+            }
+        }
+        if (cliVersion !== 'latest') {
+            // Return cache if available
+            const cachedPath = tc.find('security.mayhem.app.cli.mapi', cliVersion, os);
+            if (cachedPath) {
+                core.debug(`found cache: ${cachedPath}`);
+                return `${cachedPath}/${bin}`;
+            }
         }
         // Download the CLI and cache it if version is set
-        const mapiPath = yield tc.downloadTool(`https://mayhem4api.forallsecure.com/downloads/cli/${cliVersion}/${os}/${bin}`);
+        const mapiPath = yield tc.downloadTool(`https://app.mayhem.security/cli/mapi/${os}/latest/${bin}`);
         (0, fs_1.chmodSync)(mapiPath, 0o755);
         if (cliVersion === 'latest') {
             return mapiPath;
         }
-        const folder = yield tc.cacheFile(mapiPath, bin, 'mapi', cliVersion, os);
+        const folder = yield tc.cacheFile(mapiPath, bin, 'security.mayhem.app.cli.mapi', cliVersion, os);
         return `${folder}/${bin}`;
     });
 }
@@ -99,8 +101,8 @@ function run() {
             process.env['SKIP_MAPI_AUTO_UPDATE'] = 'true';
             const cli = yield mapiCLI();
             // Load inputs
-            const mapiToken = core.getInput('mapi-token');
-            const mapiUrl = core.getInput('mapi-url');
+            const mayhemToken = core.getInput('mayhem-token');
+            const mayhemUrl = core.getInput('mayhem-url');
             const githubToken = core.getInput('github-token', { required: true });
             const apiUrl = core.getInput('api-url', { required: true });
             const apiSpec = core.getInput('api-spec', { required: true });
@@ -151,11 +153,11 @@ function run() {
             }
             args.push(...runArgs);
             core.debug(args.join(' '));
-            if (mapiToken) {
-                process.env['MAPI_TOKEN'] = mapiToken;
+            if (mayhemToken) {
+                process.env['MAYHEM_TOKEN'] = mayhemToken;
             }
-            if (mapiUrl) {
-                process.env['MAPI_URL'] = mapiUrl;
+            if (mayhemUrl) {
+                process.env['MAYHEM_URL'] = mayhemUrl;
             }
             process.env['GITHUB_TOKEN'] = githubToken;
             // We expect the token to be a service account which can only belong to a
@@ -204,14 +206,14 @@ const axios_1 = __importDefault(__nccwpck_require__(8757));
 const client = axios_1.default.create({
     xsrfCookieName: 'mapi_csrf',
     xsrfHeaderName: 'x-csrf-token',
-    baseURL: 'https://mayhem4api.forallsecure.com/',
+    baseURL: 'https://app.mayhem.security/',
     headers: {
         'user-agent': `mapi-github-action/${process.env.npm_package_version}`
     }
 });
-function cliInfo() {
+function cliInfo(os, bin) {
     return __awaiter(this, void 0, void 0, function* () {
-        const resp = yield client.get('/api/v1/hello/cli');
+        const resp = yield client.get(`/cli/mapi/${os}/latest/${bin}.meta.json`);
         return resp.data;
     });
 }
