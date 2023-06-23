@@ -76,14 +76,8 @@ function mapiCLI() {
                 core.debug('Could not get CLI version. Using latest');
             }
         }
-        // Return cache if available
-        const cachedPath = tc.find('security.mayhem.app.cli.mapi', cliVersion, os);
-        if (cachedPath) {
-            core.debug(`found cache: ${cachedPath}`);
-            return `${cachedPath}/${bin}`;
-        }
         // Download the CLI and cache it if version is set
-        const mapiPath = yield tc.downloadTool(`https://app.mayhem.security/cli/mapi/${os}/${cliVersion}/${bin}`);
+        const mapiPath = yield tc.downloadTool(`https://app.mayhem.security/cli/mapi/${os}/latest/${bin}`);
         (0, fs_1.chmodSync)(mapiPath, 0o755);
         if (cliVersion === 'latest') {
             return mapiPath;

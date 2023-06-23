@@ -31,16 +31,9 @@ async function mapiCLI(): Promise<string> {
     }
   }
 
-  // Return cache if available
-  const cachedPath = tc.find('security.mayhem.app.cli.mapi', cliVersion, os)
-  if (cachedPath) {
-    core.debug(`found cache: ${cachedPath}`)
-    return `${cachedPath}/${bin}`
-  }
-
   // Download the CLI and cache it if version is set
   const mapiPath = await tc.downloadTool(
-    `https://app.mayhem.security/cli/mapi/${os}/${cliVersion}/${bin}`
+    `https://app.mayhem.security/cli/mapi/${os}/latest/${bin}`
   )
   chmodSync(mapiPath, 0o755)
   if (cliVersion === 'latest') {
