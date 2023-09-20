@@ -1,6 +1,6 @@
 # Mayhem for API GitHub Action
 
-[![Mayhem for API](https://mayhem4api.forallsecure.com/downloads/img/mapi-logo-full-color.svg)](http://mayhem4api.forallsecure.com/signup)
+[![Mayhem for API](./imgs/mapi-logo-full-color.svg)](https://www.mayhem.security/api-security)
 
 A GitHub Action for using Mayhem for API to check for reliability,
 performance and security issues in your APIs.
@@ -20,7 +20,7 @@ our job easier!
 and PRs. We make it easy, and provide results right in your PRs where
 you want them. Adding Mayhem for API to a DevOps pipeline is easy.
 
-Want to try it? [Sign up for free](http://mayhem4api.forallsecure.com/signup) today!
+Want to try it? [Sign up for free](https://www.mayhem.security/api-security) today!
 
 ## Usage
 
@@ -145,9 +145,9 @@ steps.
 
 ## Artifact HTML Report
 
-![HTML Report](https://mayhem4api.forallsecure.com/downloads/img/sample-report.png)
+![HTML Report](./imgs/sample-report.png)
 
-To artifact the report in your build, add this step to your pipeline:
+To create an artifact of the report in your build, add this step to your pipeline:
 
 ```yaml
 - name: Run Mayhem for API to check for vulnerabilities
@@ -170,7 +170,7 @@ To artifact the report in your build, add this step to your pipeline:
 ## GitHub Code Scanning support
 
 ![Mayhem for API issue in your
-PR](http://mayhem4api.forallsecure.com/downloads/img/sarif-github.png)
+PR](./imgs/sarif-github.png)
 
 Uploading SARIF reports to GitHub allows you to see any issue found by
 Mayhem for API right on your PR, as well as in the "Security" tab of
