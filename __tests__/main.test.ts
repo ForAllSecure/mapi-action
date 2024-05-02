@@ -10,6 +10,7 @@ const mapi_api_run = (additional_env: {[key: string]: string}) => {
   process.env['RUNNER_TEMP'] = '/tmp'
   process.env['RUNNER_TOOL_CACHE'] = '/tmp'
   process.env['INPUT_MAYHEM-TOKEN'] = process.env.MAYHEM_TOKEN
+  process.env['INPUT_MAYHEM-URL'] = 'https://app.mayhem.security'
   process.env['INPUT_GITHUB-TOKEN'] = process.env.GITHUB_TOKEN
   process.env['INPUT_DURATION'] = '10'
   process.env['INPUT_ZAP-API-SCAN'] = 'true'
