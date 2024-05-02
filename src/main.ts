@@ -6,8 +6,8 @@ import {chmodSync} from 'fs'
 import {cliInfo} from './mapiapi'
 import slugify from 'slugify'
 
-// Return local path to donwloaded or cached CLI
-async function mapiCLI(): Promise<string> {
+// Return local path to downloaded or cached CLI
+async function mapiCLI(cliVersion: string): Promise<string> {
   // Infer right version from environment
   let os = ''
   let bin = 'mapi'
@@ -21,7 +21,7 @@ async function mapiCLI(): Promise<string> {
   }
 
   // Get latest version from API
-  let cliVersion = 'latest'
+  // let cliVersion = 'latest'
   try {
     cliVersion = (await cliInfo(os, bin)).version
   } catch (err: unknown) {
@@ -62,12 +62,17 @@ async function mapiCLI(): Promise<string> {
 async function run(): Promise<void> {
   try {
     // Disable auto udpates since we always get the latest CLI
-    process.env['SKIP_MAPI_AUTO_UPDATE'] = 'true'
-    const cli = await mapiCLI()
+    // process.env['SKIP_MAPI_AUTO_UPDATE'] = 'true'
 
     // Load inputs
     const mayhemToken: string = core.getInput('mayhem-token')
     const mayhemUrl: string = core.getInput('mayhem-url')
+    let cliVersion: string = core.getInput('cli-version')
+    if (cliVersion === '') {
+      core.debug('No CLI version specified. Using latest')
+      cliVersion = 'latest'
+    }
+    const cli = await mapiCLI(cliVersion)
     const githubToken: string = core.getInput('github-token', {required: true})
     const apiUrl: string = core.getInput('api-url', {required: true})
     const apiSpec: string = core.getInput('api-spec', {required: true})
