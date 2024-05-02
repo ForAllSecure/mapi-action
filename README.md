@@ -84,7 +84,6 @@ The action accepts the follow inputs:
 | ✔️ | `mayhem-token` | string | Mayhem API token |
 | ✔️ | `api-url` | string | URL to your running API. *Example:* http://localhost:8000/api/v1 |
 | ✔️ | `api-spec` | string | Path or URL to your Swagger spec, OpenAPI spec, or Postman collection file, or Postman [collection id](https://support.postman.com/hc/en-us/articles/5063785095319-How-to-find-the-ID-of-an-element-in-Postman).|
-|   | `cli-version` | string | Preferred version of `mapi` CLI to run, such as `2.20.1` | latest
 |   | `target` | string | The organization-scoped name of your target, such as `forallsecure/mapi-action-example` | auto-generated from your GitHub Repository name
 |   | `postman-api-key` | string | Postman [API key](https://learning.postman.com/docs/developer/intro-api/) for api specs that are private postman collection ids.
 |   | `postman-environment` | string | Path or id of a Postman [Environment](https://learning.postman.com/docs/sending-requests/managing-environments/).
