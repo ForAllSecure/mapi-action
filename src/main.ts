@@ -23,7 +23,7 @@ async function mapiCLI(mayhemUrl: string): Promise<string> {
   // Get latest version from API
   let cliVersion = 'latest'
   try {
-    cliVersion = (await cliInfo(os, bin)).version
+    cliVersion = (await cliInfo(os, bin, mayhemUrl)).version
   } catch (err: unknown) {
     if (err instanceof Error) {
       core.info(err.message)
@@ -63,7 +63,7 @@ async function run(): Promise<void> {
   try {
     // Disable auto udpates since we always get the latest CLI
     process.env['SKIP_MAPI_AUTO_UPDATE'] = 'true'
-    
+
     // Load inputs
     const mayhemToken: string = core.getInput('mayhem-token')
     const mayhemUrl: string = core.getInput('mayhem-url')
