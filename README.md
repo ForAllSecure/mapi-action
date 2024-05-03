@@ -81,7 +81,7 @@ The action accepts the follow inputs:
 
 | Required | Input Name | Type | Description | Default
 | --- | --- | --- | --- | ---
-|   | `mayhem-url` | string | Path to the Mayhem API you're using. | https://app.mayhem.security
+|   | `mayhem-url` | string | URL of the Mayhem API you're using. | https://app.mayhem.security
 | ✔️ | `mayhem-token` | string | Mayhem API token |
 | ✔️ | `api-url` | string | URL to your running API. *Example:* http://localhost:8000/api/v1 |
 | ✔️ | `api-spec` | string | Path or URL to your Swagger spec, OpenAPI spec, or Postman collection file, or Postman [collection id](https://support.postman.com/hc/en-us/articles/5063785095319-How-to-find-the-ID-of-an-element-in-Postman).|

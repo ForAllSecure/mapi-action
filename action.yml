@@ -3,7 +3,7 @@ description: 'Automatically test your REST APIs with your OpenAPI specs and Post
 author: 'ForAllSecure'
 inputs:
   mayhem-url:
-    description: Mayhem URL (defaults to https://app.mayhem.security)
+    description: "URL of the Mayhem API you're using. | https://app.mayhem.security"
   mayhem-token:
     description: Mayhem token
   api-url:
