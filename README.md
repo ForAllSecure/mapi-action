@@ -81,7 +81,6 @@ The action accepts the follow inputs:
 
 | Required | Input Name | Type | Description | Default
 | --- | --- | --- | --- | ---
-|   | `mayhem-url` | string | URL of the Mayhem API you're using. | https://app.mayhem.security
 | ✔️ | `mayhem-token` | string | Mayhem API token |
 | ✔️ | `api-url` | string | URL to your running API. *Example:* http://localhost:8000/api/v1 |
 | ✔️ | `api-spec` | string | Path or URL to your Swagger spec, OpenAPI spec, or Postman collection file, or Postman [collection id](https://support.postman.com/hc/en-us/articles/5063785095319-How-to-find-the-ID-of-an-element-in-Postman).|
@@ -93,6 +92,7 @@ The action accepts the follow inputs:
 |   | `html-report` | string | Path to the generated SARIF report |
 |   | `sarif-report` | string | Path to the generated HTML report |
 |   | `run-args` | string | Additional arguments to provide to the `mapi run` command.  Argument values should be separated on new lines. <br><br>e.g.<br> <pre>  run-args: \|<br>    # Basic Auth<br>    --basic-auth<br>    login:password</pre><br>⚠️ Avoid wrapping values in quotes, as these will be escaped and included in the value passed to `mapi`.<br><br>⛔️ `"login:password"` <br>✅ `login:password` |
+|   | `mayhem-url` | string | Mayhem API override | https://app.mayhem.security
 
 
 ### Continuing on error
