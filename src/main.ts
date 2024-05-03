@@ -66,7 +66,9 @@ async function run(): Promise<void> {
 
     // Load inputs
     const mayhemToken: string = core.getInput('mayhem-token')
-    const mayhemUrl: string = core.getInput('mayhem-url')
+    // Set default if not provided
+    const mayhemUrl: string =
+      core.getInput('mayhem-url') || 'https://app.mayhem.security'
     const cli = await mapiCLI(mayhemUrl)
     const githubToken: string = core.getInput('github-token', {required: true})
     const apiUrl: string = core.getInput('api-url', {required: true})

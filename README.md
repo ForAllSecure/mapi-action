@@ -92,7 +92,8 @@ The action accepts the follow inputs:
 |   | `html-report` | string | Path to the generated SARIF report |
 |   | `sarif-report` | string | Path to the generated HTML report |
 |   | `run-args` | string | Additional arguments to provide to the `mapi run` command.  Argument values should be separated on new lines. <br><br>e.g.<br> <pre>  run-args: \|<br>    # Basic Auth<br>    --basic-auth<br>    login:password</pre><br>⚠️ Avoid wrapping values in quotes, as these will be escaped and included in the value passed to `mapi`.<br><br>⛔️ `"login:password"` <br>✅ `login:password` |
-|   | `mayhem-url` | string | Path to your Mayhem API instance.  If you're using something other than the default of https://app.mayhem.security |
+|   | `mayhem-url` | string | Mayhem API override | https://app.mayhem.security
+
 
 ### Continuing on error
 

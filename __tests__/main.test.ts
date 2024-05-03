@@ -14,10 +14,9 @@ const mapi_api_run = (additional_env: {[key: string]: string}) => {
   process.env['INPUT_GITHUB-TOKEN'] = process.env.GITHUB_TOKEN
   process.env['INPUT_DURATION'] = '10'
   process.env['INPUT_ZAP-API-SCAN'] = 'true'
-  process.env['INPUT_API-URL'] =
-    'https://demo-api.mayhem4api.forallsecure.com/api/v3'
+  process.env['INPUT_API-URL'] = 'https://demo-api.mayhem.security/api/v3'
   process.env['INPUT_API-SPEC'] =
-    'https://demo-api.mayhem4api.forallsecure.com/api/v3/openapi.json'
+    'https://demo-api.mayhem.security/api/v3/openapi.json'
   const np = process.execPath
   const ip = path.join(__dirname, '..', 'lib', 'main.js')
   const options: ExecFileSyncOptions = {

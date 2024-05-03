@@ -101,7 +101,8 @@ function run() {
             process.env['SKIP_MAPI_AUTO_UPDATE'] = 'true';
             // Load inputs
             const mayhemToken = core.getInput('mayhem-token');
-            const mayhemUrl = core.getInput('mayhem-url');
+            // Set default if not provided
+            const mayhemUrl = core.getInput('mayhem-url') || 'https://app.mayhem.security';
             const cli = yield mapiCLI(mayhemUrl);
             const githubToken = core.getInput('github-token', { required: true });
             const apiUrl = core.getInput('api-url', { required: true });
