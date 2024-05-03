@@ -2,6 +2,8 @@ name: 'Mayhem for API'
 description: 'Automatically test your REST APIs with your OpenAPI specs and Postman collections'
 author: 'ForAllSecure'
 inputs:
+  mayhem-url:
+    description: Mayhem URL (defaults to https://app.mayhem.security)
   mayhem-token:
     description: Mayhem token
   api-url:

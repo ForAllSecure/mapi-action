@@ -35,9 +35,8 @@ jobs:
         continue-on-error: true
         with:
           mayhem-token: ${{ secrets.MAYHEM_TOKEN }}
-          mayhem-url: https://app.mayhem.security
-          api-url: https://demo-api.mayhem4api.forallsecure.com/api/v3
-          api-spec: https://demo-api.mayhem4api.forallsecure.com/api/v3/openapi.json
+          api-url: https://demo-api.mayhem.security//api/v3
+          api-spec: https://demo-api.mayhem.security//api/v3/openapi.json
           html-report: mapi.html
           run-args: |
             --warnaserror
