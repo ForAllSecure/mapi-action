@@ -42,13 +42,15 @@ jobs:
             --warnaserror
             --junit
             junit.xml
+
       - name: Archive HTML report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: mapi-report
           path: mapi.html
+
       - name: Archive JUnit results
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: mapi-junit
           path: junit.xml

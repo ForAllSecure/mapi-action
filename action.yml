@@ -21,7 +21,7 @@ inputs:
   sarif-report:
     description: SARIF output path. You can upload it to GitHub using the 'github/codeql-action/upload-sarif@v1' action
   html-report:
-    description: HTML output path. You can upload the artifact to GitHub using the 'actions/upload-artifact@v2' action
+    description: HTML output path. You can upload the artifact to GitHub using the 'actions/upload-artifact@v4' action
   experimental-rewrite-plugin:
     description: --experimental-rewrite-plugin option value
   experimental-classify-plugin:
